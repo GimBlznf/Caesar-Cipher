@@ -1,57 +1,57 @@
-object CeasarCipher extends App{
+object CeasarCipher{
 
 	val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	def encryption(): Unit = {
+		//specify the amount to shift the alphabet
+		print("Specify the shift")
+		val amount = scala.io.StdIn.readLine("Shift By: ").toInt + alphabet.size
+		val finalShift = amount % alphabet.size
+		
 
-  //specify the amount to shift the alphabet
-  print("Specify the shift")
-	val amount = scala.io.StdIn.readLine("Shift By: ").toInt + alphabet.size
-  val finalShift = amount % alphabet.size
-  
+			//Enter the code to be encrypted
+		val code = scala.io.StdIn.readLine("Enter the code to be encrypted: ")
 
-	//Enter the code to be encrypted
-	val code = scala.io.StdIn.readLine("Enter the code to be encrypted: ")
+		val encryptedCode = code.map( (a: Char) => { 
 
-	val encryptedCode = code.map( (a: Char) => { 
+			val x = alphabet.indexOf(a.toUpper)
 
-		val x = alphabet.indexOf(a.toUpper)
-
-		if (x == -1){
-			a
-		}
-		else{
-			alphabet((x + finalShift) % alphabet.size)
+			if (x == -1){
+				a
+			}else{
+				alphabet((x + finalShift) % alphabet.size)
 			} 
-	});
+		});
 
-	println(encryptedCode);
-}
+		println(encryptedCode);
+	}
 
-
-object DecryptCaesor extends App{
-
-	val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-
-  
-  println("----Specify the shift----")
-	val amount = scala.io.StdIn.readLine("Shift By: ").toInt + alphabet.size
-  val finalShift = amount % alphabet.size
+	 def decryption(): Unit = {
+		println("----Specify the shift----")
+		val amount = scala.io.StdIn.readLine("Shift By: ").toInt + alphabet.size
+		val finalShift = amount % alphabet.size
   
 
-	//Enter the code to be encrypted
-	val code = scala.io.StdIn.readLine("Enter the code to be decrypted: ")
+		//Enter the code to be encrypted
+		val code = scala.io.StdIn.readLine("Enter the code to be decrypted: ")
 
-	val encryptedCode = code.map( (a: Char) => { 
+		val encryptedCode = code.map( (a: Char) => { 
 
 		val x = alphabet.indexOf(a.toUpper)
 
 		if (x == -1){
 			a
-		}
-		else{
+		}else{
 			alphabet((x - finalShift) % alphabet.size)
-			} 
-	});
+		} 
+		});
 
-	println(encryptedCode);
+		println(encryptedCode);
+	}
+	def main(args: Array[String]) :Unit={
+		encryption();
+		print("decryption")
+		decryption();
+	}
+	
 }
+ 
