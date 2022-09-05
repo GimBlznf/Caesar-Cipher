@@ -19,7 +19,7 @@ object CeasarCipher extends App{
 			a
 		}
 		else{
-			alphabet((x + amount) % alphabet.size)
+			alphabet((x + finalShift) % alphabet.size)
 			} 
 	});
 
@@ -31,17 +31,17 @@ object DecryptCaesor extends App{
 
 	val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-  val code = scala.io.StdIn.readLine("Enter the code to be decrypted: ")
+
   
   println("----Specify the shift----")
-  val amount = scala.io.StdIn.readLine("Shift By: ").toInt + alphabet.size
-  val finalShift1 = amount % alphabet.size
+	val amount = scala.io.StdIn.readLine("Shift By: ").toInt + alphabet.size
+  val finalShift = amount % alphabet.size
   
 
 	//Enter the code to be encrypted
-	val code1 = scala.io.StdIn.readLine("Enter the code to be decrypted: ")
+	val code = scala.io.StdIn.readLine("Enter the code to be decrypted: ")
 
-	val decryptedCode1 = inputText.map( (a: Char) => { 
+	val encryptedCode = code.map( (a: Char) => { 
 
 		val x = alphabet.indexOf(a.toUpper)
 
@@ -49,9 +49,9 @@ object DecryptCaesor extends App{
 			a
 		}
 		else{
-			alphabet((x - finalShift1) % alphabet.size)
+			alphabet((x - finalShift) % alphabet.size)
 			} 
 	});
 
-	println(decryptedCode1);
+	println(encryptedCode);
 }
